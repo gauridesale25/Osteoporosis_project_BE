@@ -1,0 +1,36 @@
+# -----------------------
+# Python (Django Backend)
+# -----------------------
+backend/venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# Django media files (optional)
+backend/media/
+
+# -----------------------
+# Node (React Frontend)
+# -----------------------
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# -----------------------
+# Environment variables
+# -----------------------
+.env
+*.env
+
+# -----------------------
+# OS files
+# -----------------------
+.DS_Store
+Thumbs.db
+
+# -----------------------
+# Logs
+# -----------------------
+*.log
