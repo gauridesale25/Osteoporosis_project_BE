@@ -11,10 +11,12 @@ from .ml_model import predict_image
 @permission_classes([IsAuthenticated])
 def predict_view(request):
     image = request.FILES['image']
+    patient_name = request.data.get('patient_name', 'Unknown Patient')
 
     # Step 1: Save temporarily (needed to get file path)
     prediction = Prediction.objects.create(
         user=request.user,
+        patient_name=patient_name,
         image=image,
         result="Processing",
         confidence=0.0
@@ -31,18 +33,20 @@ def predict_view(request):
     prediction.confidence = result_data['confidence']
     prediction.save()
 
+    result_data['patient_name'] = prediction.patient_name
     return Response(result_data)
 
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def history_view(request):
-    data = Prediction.objects.filter(user=request.user)
+    data = Prediction.objects.filter(user=request.user).order_by('-created_at')
 
     res = []
     for item in data:
         res.append({
             "id": item.id,
+            "patient_name": item.patient_name,
             "image": item.image.url,
             "result": item.result,
             "confidence": item.confidence,
