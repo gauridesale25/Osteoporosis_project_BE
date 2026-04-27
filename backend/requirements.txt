@@ -7,3 +7,6 @@ numpy
 tensorflow
 Pillow
 python-dotenv
+gunicorn
+whitenoise
+dj-database-url

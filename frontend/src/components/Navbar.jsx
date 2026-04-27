@@ -12,7 +12,7 @@ export default function Navbar() {
   return (
     <nav className="flex justify-between items-center bg-white shadow-sm px-8 py-4 border-b border-gray-100">
       <Link to="/" className="text-xl font-bold text-teal-600 tracking-tight hover:text-teal-700 transition">
-        Osteoporosis AI
+        OsteoPredict
       </Link>
 
       <div className="flex gap-6 items-center font-medium text-sm">

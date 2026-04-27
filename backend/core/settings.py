@@ -13,22 +13,25 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import os
+from dotenv import load_dotenv
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Load environment variables from .env file
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-zu^@1&(v_-da3@r-dq#_nv!zfv40nr5#=z-c36n3kfn&9sw6qq'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*'] # In production, you should restrict this to your actual Vercel and Railway domains
 
 # Application definition
 
@@ -47,6 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -82,14 +86,10 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'osteoporosis_db',
-        'USER': 'postgres',
-        'PASSWORD': 'Tina3004!',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL', f"postgres://{os.environ.get('DB_USER', 'postgres')}:{os.environ.get('DB_PASSWORD', '')}@{os.environ.get('DB_HOST', 'localhost')}:{os.environ.get('DB_PORT', '5432')}/{os.environ.get('DB_NAME', 'osteoporosis_db')}"),
+        conn_max_age=600
+    )
 }
 
 
@@ -138,6 +138,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
