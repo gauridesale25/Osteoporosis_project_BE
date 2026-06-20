@@ -2,7 +2,12 @@ import numpy as np
 from tensorflow.keras.models import load_model
 from PIL import Image
 
-model = load_model('../model/model.h5')
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+MODEL_PATH = BASE_DIR / "model" / "model.h5"
+
+model = load_model(MODEL_PATH)
 
 classes = ['Normal', 'Doubtful', 'Mild', 'Moderate', 'Severe']
 
