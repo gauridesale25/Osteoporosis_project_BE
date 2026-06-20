@@ -33,6 +33,7 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = os.getenv(
     "ALLOWED_HOSTS",
+    ".onrender.com",
     "localhost,127.0.0.1"
 ).split(",")
 
