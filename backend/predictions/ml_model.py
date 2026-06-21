@@ -12,15 +12,22 @@ classes = ['Normal', 'Doubtful', 'Mild', 'Moderate', 'Severe']
 _model = None
 
 
+# def get_model():
+#     global _model
+
+#     if _model is None:
+#         print("Loading TensorFlow model...")
+#         _model = load_model(MODEL_PATH)
+
+#     return _model
 def get_model():
     global _model
 
     if _model is None:
-        print("Loading TensorFlow model...")
+        from tensorflow.keras.models import load_model
         _model = load_model(MODEL_PATH)
 
     return _model
-
 
 def predict_image(image_path):
     try:
