@@ -1,5 +1,4 @@
 import numpy as np
-from tensorflow.keras.models import load_model
 from PIL import Image
 from pathlib import Path
 
@@ -8,7 +7,6 @@ MODEL_PATH = BASE_DIR / "model" / "model.h5"
 
 classes = ['Normal', 'Doubtful', 'Mild', 'Moderate', 'Severe']
 
-# Lazy-loaded model
 _model = None
 
 
@@ -16,6 +14,7 @@ def get_model():
     global _model
 
     if _model is None:
+        from tensorflow.keras.models import load_model
         print("Loading TensorFlow model...")
         _model = load_model(MODEL_PATH)
 
