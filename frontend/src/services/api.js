@@ -11,7 +11,7 @@ export const predictImage = (formData, token) =>
   API.post("/api/predictions/predict/", formData, {
     headers: {
       Authorization: `Bearer ${token}`,
-      "Content-Type": "multipart/form-data",
+      // "Content-Type": "multipart/form-data",
     }
   });
 
