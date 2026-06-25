@@ -8,7 +8,7 @@ export const loginUser = (data) => API.post("/api/auth/login/", data);
 export const registerUser = (data) => API.post("/api/auth/register/", data);
 
 export const predictImage = (formData, token) =>
-  API.post("/api/predictions/predict/", formData, {
+  API.post("/api/predict/", formData, {
     headers: {
       Authorization: `Bearer ${token}`,
       // "Content-Type": "multipart/form-data",
@@ -16,7 +16,7 @@ export const predictImage = (formData, token) =>
   });
 
 export const getHistory = (token) =>
-  API.get("/api/predictions/history/", {
+  API.get("/api/history/", {
     headers: {
       Authorization: `Bearer ${token}`
     }
