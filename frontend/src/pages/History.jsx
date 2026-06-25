@@ -67,7 +67,8 @@ export default function History() {
                     {records.map(item => (
                       <div key={item.id} className="bg-gray-50 border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition flex flex-col">
                         <div className="h-40 bg-gray-200 w-full overflow-hidden flex items-center justify-center">
-                          <img src={`http://127.0.0.1:8000${item.image}`} alt="X-ray" className="object-cover w-full h-full" />
+                          {/* <img src={`http://127.0.0.1:8000${item.image}`} alt="X-ray" className="object-cover w-full h-full" /> */}
+                          <img src={item.image} alt="X-ray" className="object-cover w-full h-full" />
                         </div>
                         <div className="p-4 flex flex-col flex-1">
                           <div className="flex justify-between items-start mb-3">
