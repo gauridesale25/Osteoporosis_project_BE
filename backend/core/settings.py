@@ -70,6 +70,7 @@ CORS_ALLOWED_ORIGINS = os.getenv(
 ).split(",")
 
 CORS_ALLOW_CREDENTIALS = True
+CORS_URLS_REGEX = r'^.*$'
 
 ROOT_URLCONF = 'core.urls'
 
