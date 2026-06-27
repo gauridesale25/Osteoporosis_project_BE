@@ -12,6 +12,8 @@ export default function History() {
         const token = localStorage.getItem("token");
         const res = await getHistory(token);
         setData(res.data);
+        console.log("History data:", res.data);           // ← add here
+        console.log("First image URL:", res.data[0]?.image); // ← and here
       } catch (err) {
         console.error("Failed to fetch history", err);
       } finally {
