@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
     'rest_framework',
     'corsheaders',
     'accounts',
@@ -176,3 +178,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Hugging Face ML API
 HF_ML_API_URL = os.environ.get("HF_ML_API_URL", "http://localhost:7860")
+# Cloudinary
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
