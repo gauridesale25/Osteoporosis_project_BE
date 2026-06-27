@@ -58,7 +58,7 @@ def history_view(request):
         res.append({
             "id": item.id,
             "patient_name": item.patient_name,
-            "image": request.build_absolute_uri(item.image.url),
+            "image": item.image.url,
             "result": item.result,
             "confidence": item.confidence,
             "date": item.created_at,
